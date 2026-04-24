@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html  { scroll-behavior: smooth; }
+  body  {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a0a0f;
+    color: #e2e8f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar        { width: 6px; }
+  ::-webkit-scrollbar-track  { background: #12121a; }
+  ::-webkit-scrollbar-thumb  { background: #ff359b; border-radius: 9999px; }
+}
+
+/* ─── Reusable component classes ─────────────────────────────────────────── */
+@layer components {
+
+  /* Gradient text helpers */
+  .gradient-text {
+    background: linear-gradient(135deg, #f1f5f9 30%, #ff359b 70%, #00d2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-brand {
+    background: linear-gradient(135deg, #ff359b, #00d2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glassmorphism surface */
+  .glass {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  /* ── Navbar nav-link with animated underline ── */
+  .nav-link {
+    position: relative;
+    padding: 0.45rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition: color 0.25s ease, background 0.25s ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ff359b, #00d2ff);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: #f1f5f9;
+    background: rgba(255,255,255,0.06);
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 60%;
+  }
+
+  /* ── Mobile menu link ── */
+  .mobile-link {
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    transition: all 0.25s ease;
+    display: block;
+  }
+  .mobile-link:hover,
+  .mobile-link.active {
+    background: rgba(255,255,255,0.05);
+    color: #f1f5f9;
+    padding-left: 1.5rem;
+  }
+
+  /* ── Login card top gradient line ── */
+  .login-card {
+    position: relative;
+  }
+  .login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, #ff359b, #fffd87, #00d2ff);
+    border-radius: 9999px;
+    opacity: 0.85;
+  }
+
+  /* ── Skill card accent glow spot ── */
+  .skill-card-glow::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent, #ff359b) 0%, transparent 70%);
+    opacity: 0.15;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .skill-card-glow:hover::before {
+    opacity: 0.3;
+  }
+
+  /* ── Timeline vertical line ── */
+  .timeline-list {
+    position: relative;
+    padding-left: 2rem;
+    list-style: none;
+  }
+  .timeline-list::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #ff359b, #00d2ff);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 4px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #ff359b;
+    border: 2px solid #0a0a0f;
+    box-shadow: 0 0 10px rgba(255,53,155,0.5);
+  }
+
+  /* ── Footer social icon ── */
+  .social-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #94a3b8;
+    transition: all 0.3s ease;
+  }
+  .social-btn:hover {
+    background: linear-gradient(135deg, #ff359b, #00d2ff);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,53,155,0.35);
+  }
+}
