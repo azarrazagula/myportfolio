@@ -41,7 +41,7 @@ const Footer = (props) => (
             {icon}
           </a>
         ))}
-        <Tag variant="primary" size="sm" onClick={props.openForm}>
+        <Tag variant="primary" size="sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
           Get in Touch
         </Tag>
       </div>

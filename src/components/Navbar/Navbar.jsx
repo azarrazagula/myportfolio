@@ -3,15 +3,14 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const NAV_LINKS = [
-  { to: '/', label: 'Home' },
-  { to: '/languages', label: 'Languages' },
-  { to: '/about', label: 'About' },
+  { href: '#home', label: 'Home' },
+  { href: '#languages', label: 'Languages' },
+  { href: '#about', label: 'About' },
 ];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -25,7 +24,10 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const handleContact = () => { setMenuOpen(false); navigate('/contact'); };
+  const handleContact = () => { 
+    setMenuOpen(false); 
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); 
+  };
 
   return (
     <>
@@ -52,15 +54,14 @@ const Navbar = () => {
 
           {/* CENTER – nav links (hidden on mobile) */}
           <ul className="hidden md:flex flex-[2] items-center justify-center gap-1 list-none m-0 p-0 shadow-none">
-            {NAV_LINKS.map(({ to, label }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  end={to === '/'}
-                  className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            {NAV_LINKS.map(({ href, label }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  className="nav-link"
                 >
                   {label}
-                </NavLink>
+                </a>
               </li>
             ))}
           </ul>
@@ -104,16 +105,15 @@ const Navbar = () => {
           }
         `}
       >
-        {NAV_LINKS.map(({ to, label }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={to === '/'}
-            className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
+        {NAV_LINKS.map(({ href, label }) => (
+          <a
+            key={href}
+            href={href}
+            className="mobile-link"
             onClick={() => setMenuOpen(false)}
           >
             {label}
-          </NavLink>
+          </a>
         ))}
         <div className="mt-2 pt-4 border-t border-white/10">
           <Button
