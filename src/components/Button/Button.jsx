@@ -37,10 +37,10 @@ const SIZES = {
  */
 const Button = ({
   children,
-  variant   = 'primary',
-  size      = 'md',
-  as: Tag   = 'button',
-  className = '',
+  variant = 'primary',
+  size = 'md',
+  as: Tag = 'button',
+  className = '', props,
   ...rest
 }) => (
   <Tag

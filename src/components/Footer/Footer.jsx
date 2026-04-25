@@ -1,13 +1,18 @@
 import React from 'react';
+import Tag from "../Button/Button.jsx"
+import socialIcon from "../../Assets/social.svg";
+import twitterIcon from "../../Assets/twitter.svg";
+import linkedinIcon from "../../Assets/linkedin (1).svg";
+import githubIcon from "../../Assets/github (1).svg";
 
 const SOCIALS = [
-  { icon: '𝕏', label: 'Twitter/X',  href: 'https://twitter.com'   },
-  { icon: '💼', label: 'LinkedIn',   href: 'https://linkedin.com'  },
-  { icon: '🐙', label: 'GitHub',     href: 'https://github.com'    },
-  { icon: '📸', label: 'Instagram',  href: 'https://instagram.com' },
+  { icon: <img src={twitterIcon} alt="Twitter/X" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Twitter/X', href: 'https://twitter.com' },
+  { icon: <img src={linkedinIcon} alt="LinkedIn" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'LinkedIn', href: 'https://linkedin.com' },
+  { icon: <img src={githubIcon} alt="GitHub" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'GitHub', href: 'https://github.com' },
+  { icon: <img src={socialIcon} alt="Instagram" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Instagram', href: 'https://instagram.com' },
 ];
 
-const Footer = () => (
+const Footer = (props) => (
   <footer className="bg-az-dark2 border-t border-white/10 py-7 px-8">
     <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
 
@@ -36,6 +41,9 @@ const Footer = () => (
             {icon}
           </a>
         ))}
+        <Tag variant="primary" size="sm" onClick={props.openForm}>
+          Get in Touch
+        </Tag>
       </div>
     </div>
   </footer>

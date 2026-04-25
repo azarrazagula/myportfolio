@@ -2,12 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 
-const STATS = [
-  { number: '1+',  label: 'Years Experience'  },
-  { number: '10+', label: 'Projects Built'    },
-  { number: '5+',  label: 'Technologies Used' },
-];
-
 const Home = () => {
   const navigate = useNavigate();
 
@@ -27,13 +21,13 @@ const Home = () => {
 
           {/* Greeting badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-az-pink text-sm font-semibold tracking-[0.12em] uppercase mb-6">
-            <span>👋</span> Hello, World! I'm
+            <span>😊</span> Hello, World! I'm
           </div>
 
           {/* Name */}
           <h1 className="gradient-text font-grotesk font-extrabold leading-none mb-5"
             style={{ fontSize: 'clamp(3.5rem, 9vw, 6.5rem)' }}>
-            Azar
+            AzarIbrahim
           </h1>
 
           {/* Role */}
@@ -66,21 +60,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* ── Stats bar ── */}
-      <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10">
-        {STATS.map(({ number, label }) => (
-          <div
-            key={label}
-            className="py-8 text-center bg-az-dark2 transition-colors duration-300 hover:bg-az-dark3 group"
-          >
-            <div className="gradient-text-brand font-grotesk font-extrabold text-[2.5rem] transition-transform duration-300 group-hover:-translate-y-1">
-              {number}
-            </div>
-            <div className="text-xs text-slate-500 uppercase tracking-widest mt-1">{label}</div>
-          </div>
-        ))}
-      </div>
     </main>
   );
 };

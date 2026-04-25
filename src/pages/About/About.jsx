@@ -2,23 +2,23 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 
-const BADGES   = ['React', 'Node.js', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'];
+const BADGES = ['React', 'Node.js', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'];
 
 const TIMELINE = [
   {
-    year:  '2024 – Present',
+    year: '2026 – Present',
     title: 'MERN Full-Stack Developer',
-    desc:  'Building scalable web applications with React, Node, Express & MongoDB.',
+    desc: 'Building scalable web applications with React, Node, Express & MongoDB.',
   },
   {
-    year:  '2023',
+    year: '2025',
     title: 'Frontend Focus',
-    desc:  'Mastered React, Tailwind CSS, and responsive design principles.',
+    desc: 'I started learing html css and javascript from scratch. I started building a small portfolio website and it was a great experience.',
   },
   {
-    year:  '2022',
-    title: 'Started Web Development',
-    desc:  'Learned HTML, CSS, and JavaScript fundamentals from scratch.',
+    year: '2024',
+    title: 'I was a salesExecutive',
+    desc: 'I worked as a Sales Executive in a company at an entry-level position, which was not growth-oriented. As a Sales Executive, my primary responsibility was to interact with customers, understand their needs, and promote our products and services.',
   },
 ];
 
@@ -76,13 +76,13 @@ const About = () => {
             </h2>
 
             <div className="space-y-4 text-slate-400 leading-[1.85] text-[1rem]">
-              <p>I'm a <strong className="text-slate-200">MERN full-stack developer</strong> with a genuine passion for crafting web applications that are as beautiful as they are powerful. My journey into development started with curiosity — and quickly turned into a full-blown obsession.</p>
-              <p>On the <strong className="text-slate-200">frontend</strong>, I design responsive, pixel-perfect interfaces using React and Tailwind CSS, caring deeply about user experience and accessibility.</p>
-              <p>On the <strong className="text-slate-200">backend</strong>, I build secure, scalable REST APIs with Node.js and Express, backed by MongoDB databases designed for real-world complexity.</p>
-              <p>I thrive in agile environments, love collaborating with teams, and am always keen to <strong className="text-slate-200">learn, iterate, and ship</strong> products that make a real difference.</p>
-              <p>Outside of code, I explore new tech trends, contribute to open-source, and constantly level up my craft in <strong className="text-slate-200">modern web development</strong>.</p>
+              <p>I'm a <strong className="text-slate-200 relative group cursor-pointer">MERN full-stack developer<span className="absolute ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">😊</span></strong> with a genuine passion for crafting web applications that are as beautiful as they are powerful. My journey into development started with curiosity — and quickly turned into a full-blown obsession.</p>
+              <p>On the <strong className="text-slate-200 relative group cursor-pointer">frontend<span className="absolute ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">😊</span></strong>, I design responsive, pixel-perfect interfaces using React and Tailwind CSS, caring deeply about user experience and accessibility.</p>
+              <p>On the <strong className="text-slate-200 relative group cursor-pointer">backend<span className="absolute ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">😊</span></strong>, I build secure, scalable REST APIs with Node.js and Express, backed by MongoDB databases designed for real-world complexity.</p>
+              <p>I thrive in agile environments, love collaborating with teams, and am always keen to <strong className="text-slate-200 relative group cursor-pointer">learn, iterate, and ship<span className="absolute ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">😊</span></strong> products that make a real difference.</p>
+              <p>Outside of code, I explore new tech trends, contribute to open-source, and constantly level up my craft in <strong className="text-slate-200 relative group cursor-pointer">modern web development<span className="absolute ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">😊</span></strong>.</p>
               <p>Looking for a developer with technical depth and creative energy?{' '}
-                <a href="mailto:azar@example.com" className="text-az-pink font-semibold hover:underline">
+                <a href="mailto:[EMAIL_ADDRESS]" className="text-az-pink font-semibold hover:underline">
                   Let's connect!
                 </a>
               </p>

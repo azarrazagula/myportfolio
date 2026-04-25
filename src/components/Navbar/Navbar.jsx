@@ -3,9 +3,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const NAV_LINKS = [
-  { to: '/',           label: 'Home'      },
-  { to: '/languages',  label: 'Languages' },
-  { to: '/about',      label: 'About'     },
+  { to: '/', label: 'Home' },
+  { to: '/languages', label: 'Languages' },
+  { to: '/about', label: 'About' },
 ];
 
 const Navbar = () => {
@@ -46,7 +46,7 @@ const Navbar = () => {
               to="/"
               className="gradient-text-brand font-grotesk text-2xl font-bold tracking-tight no-underline"
             >
-              AZ.
+              PortFolio
             </NavLink>
           </div>
 
@@ -84,7 +84,7 @@ const Navbar = () => {
               aria-label="Toggle menu"
             >
               <span className={`block w-full h-0.5 bg-slate-200 rounded-full transition-all duration-300 origin-center ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-              <span className={`block w-full h-0.5 bg-slate-200 rounded-full transition-all duration-300 ${menuOpen  ? 'opacity-0 scale-x-0' : ''}`} />
+              <span className={`block w-full h-0.5 bg-slate-200 rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
               <span className={`block w-full h-0.5 bg-slate-200 rounded-full transition-all duration-300 origin-center ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
             </button>
           </div>
@@ -116,17 +116,12 @@ const Navbar = () => {
           </NavLink>
         ))}
         <div className="mt-2 pt-4 border-t border-white/10">
-          <button
+          <Button
             onClick={handleContact}
-            className="
-              w-full py-3.5 rounded-xl font-bold font-inter text-white
-              bg-gradient-to-r from-az-pink to-[#c4007a]
-              transition-all duration-300
-              hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(255,53,155,0.5)]
-            "
+            className="w-full text-lg py-3.5"
           >
             ✉️ Get in Touch
-          </button>
+          </Button>
         </div>
       </div>
     </>
