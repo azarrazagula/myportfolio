@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
 
 const BADGES = ['React', 'Node.js', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'];
 
@@ -22,7 +23,7 @@ const TIMELINE = [
   },
 ];
 
-const About = () => {
+const About = memo(() => {
   const navigate = useNavigate();
 
   return (
@@ -44,7 +45,7 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
           {/* Avatar side */}
-          <div className="flex flex-col items-center gap-6 animate-fade-up">
+          <ScrollReveal animation="scale-left" className="flex flex-col items-center gap-6">
             {/* Gradient ring */}
             <div
               className="w-[200px] h-[200px] rounded-full p-[4px] animate-pulse-ring"
@@ -66,10 +67,10 @@ const About = () => {
                 </span>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Text side */}
-          <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
+          <ScrollReveal animation="scale-right">
             <h2 className="font-grotesk text-2xl font-extrabold text-slate-100 mb-6">
               Hi, I'm Azar —{' '}
               <span className="gradient-text-brand">MERN Full-Stack Developer</span>
@@ -92,7 +93,7 @@ const About = () => {
               <Button onClick={() => navigate('/languages')}>View My Skills</Button>
               <Button variant="ghost" onClick={() => navigate('/contact')}>Get In Touch</Button>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* ── Timeline ── */}
@@ -118,6 +119,6 @@ const About = () => {
       </div>
     </main>
   );
-};
+});
 
 export default About;

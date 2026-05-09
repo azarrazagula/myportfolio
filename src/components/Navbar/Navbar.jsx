@@ -1,21 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const NAV_LINKS = [
-  { href: '#home', label: 'Home' },
-  { href: '#languages', label: 'Languages' },
-  { href: '#about', label: 'About' },
+  { to: '/', label: 'Home', id: 'home' },
+  { to: '/languages', label: 'Languages', id: 'languages' },
+  { to: '/about', label: 'About', id: 'about' },
 ];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const navigate = useNavigate();
+  const ticking = useRef(false);
 
+  // Handle background blur on scroll (Throttled with requestAnimationFrame)
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 10);
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Scroll Spy: Update active link based on scroll position (Throttled)
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const sections = NAV_LINKS.map(link => document.getElementById(link.id));
+          const scrollPosition = window.scrollY + 100;
+
+          let currentActive = 'home';
+          sections.forEach((section, index) => {
+            if (!section) return;
+            const top = section.offsetTop;
+            const bottom = top + section.offsetHeight;
+
+            if (scrollPosition >= top && scrollPosition < bottom) {
+              currentActive = NAV_LINKS[index].id;
+            }
+          });
+          
+          const contactSection = document.getElementById('contact');
+          if (contactSection && scrollPosition >= contactSection.offsetTop) {
+            currentActive = 'contact';
+          }
+
+          setActiveSection(prev => prev !== currentActive ? currentActive : prev);
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSpy);
   }, []);
 
   useEffect(() => {
@@ -24,9 +71,16 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const handleContact = () => { 
-    setMenuOpen(false); 
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); 
+  const handleNavClick = (to, id) => {
+    setMenuOpen(false);
+    setActiveSection(id);
+    navigate(to);
+  };
+
+  const handleContact = () => {
+    setMenuOpen(false);
+    setActiveSection('contact');
+    navigate('/contact');
   };
 
   return (
@@ -44,24 +98,24 @@ const Navbar = () => {
 
           {/* LEFT – brand */}
           <div className="flex justify-start md:flex-1">
-            <NavLink
-              to="/"
-              className="gradient-text-brand font-grotesk text-2xl font-bold tracking-tight no-underline"
+            <button
+              onClick={() => handleNavClick('/', 'home')}
+              className="gradient-text-brand font-grotesk text-2xl font-bold tracking-tight no-underline bg-transparent border-none cursor-pointer"
             >
               PortFolio
-            </NavLink>
+            </button>
           </div>
 
           {/* CENTER – nav links (hidden on mobile) */}
           <ul className="hidden md:flex flex-[2] items-center justify-center gap-1 list-none m-0 p-0 shadow-none">
-            {NAV_LINKS.map(({ href, label }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="nav-link"
+            {NAV_LINKS.map(({ to, label, id }) => (
+              <li key={to}>
+                <button
+                  onClick={() => handleNavClick(to, id)}
+                  className={`nav-link bg-transparent border-none cursor-pointer ${activeSection === id ? 'active' : ''}`}
                 >
                   {label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
@@ -73,7 +127,7 @@ const Navbar = () => {
             <Button
               onClick={handleContact}
               size="sm"
-              className="hidden md:flex shadow-none"
+              className={`hidden md:flex shadow-none ${activeSection === 'contact' ? 'ring-2 ring-az-pink' : ''}`}
             >
               Get in Touch
             </Button>
@@ -105,20 +159,19 @@ const Navbar = () => {
           }
         `}
       >
-        {NAV_LINKS.map(({ href, label }) => (
-          <a
-            key={href}
-            href={href}
-            className="mobile-link"
-            onClick={() => setMenuOpen(false)}
+        {NAV_LINKS.map(({ to, label, id }) => (
+          <button
+            key={to}
+            onClick={() => handleNavClick(to, id)}
+            className={`mobile-link text-left bg-transparent border-none cursor-pointer ${activeSection === id ? 'active text-az-pink' : ''}`}
           >
             {label}
-          </a>
+          </button>
         ))}
         <div className="mt-2 pt-4 border-t border-white/10">
           <Button
             onClick={handleContact}
-            className="w-full text-lg py-3.5"
+            className={`w-full text-lg py-3.5 ${activeSection === 'contact' ? 'ring-2 ring-az-pink' : ''}`}
           >
             ✉️ Get in Touch
           </Button>

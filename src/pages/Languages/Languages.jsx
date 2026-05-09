@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Card from '../../components/Card/Card';
 
 const SKILLS = [
@@ -44,7 +44,7 @@ const SKILLS = [
   },
 ];
 
-const Languages = () => (
+const Languages = memo(() => (
   <main className="min-h-[calc(100vh-68px)] py-20 px-6 animate-page-in">
     <div className="max-w-5xl mx-auto">
 
@@ -76,6 +76,6 @@ const Languages = () => (
       </div>
     </div>
   </main>
-);
+));
 
 export default Languages;

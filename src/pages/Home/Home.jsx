@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import About from '../About/About';
 import Languages from '../Languages/Languages';
@@ -6,6 +7,29 @@ import Contact from '../Contact/Contact';
 import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
 
 const Home = () => {
+  const { pathname } = useLocation();
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      // Force scroll to top on hard reload/first load
+      window.scrollTo(0, 0);
+      isInitialMount.current = false;
+    } else {
+      // Handle scrolling when navigating between "pages"
+      let sectionId = '';
+      if (pathname && pathname !== '/') {
+        sectionId = pathname.replace('/', '');
+      } else {
+        sectionId = 'home';
+      }
+
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [pathname]);
 
   return (
     <div id="home" className="flex flex-col w-full">
@@ -75,9 +99,7 @@ const Home = () => {
 
       {/* Alternative Pages Line by Line */}
       <section id="about" className="overflow-hidden">
-        <ScrollReveal animation="right-to-left">
-          <About />
-        </ScrollReveal>
+        <About />
       </section>
 
       <section id="contact" className="overflow-hidden">

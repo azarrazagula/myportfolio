@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import Button from '../../components/Button/Button';
 
-const Contact = () => {
+const Contact = memo(() => {
   const [form, setForm] = useState({ name: '', phone: '', description: '' });
   const [status, setStatus] = useState('');
 
@@ -123,6 +123,6 @@ const Contact = () => {
       </div>
     </main>
   );
-};
+});
 
 export default Contact;

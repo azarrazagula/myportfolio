@@ -12,7 +12,7 @@ const Card = ({
   icon,
   title,
   description,
-  level       = 80,
+  level = 80,
   accentColor = '#ff359b',
 }) => (
   <div
@@ -25,7 +25,7 @@ const Card = ({
     "
     style={{ '--accent': accentColor }}
     onMouseEnter={e => (e.currentTarget.style.borderColor = accentColor)}
-    onMouseLeave={e => (e.currentTarget.style.borderColor  = '')}
+    onMouseLeave={e => (e.currentTarget.style.borderColor = '')}
   >
     {/* Icon */}
     <span
