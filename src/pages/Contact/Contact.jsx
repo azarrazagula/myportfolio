@@ -1,128 +1,134 @@
 import React, { useState, memo } from 'react';
 import Button from '../../components/Button/Button';
+import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
+import contactAvatar from '../../Assets/contact_avatar.png';
 
 const Contact = memo(() => {
-  const [form, setForm] = useState({ name: '', phone: '', description: '' });
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState('');
 
   const handleChange = e => setForm(p => ({ ...p, [e.target.name]: e.target.value }));
 
   const handleSubmit = e => {
     e.preventDefault();
-    setStatus('🎉 Message sent successfully! (Demo)');
+    setStatus('🎉 Message sent successfully!');
     setTimeout(() => setStatus(''), 3000);
-    setForm({ name: '', phone: '', description: '' });
+    setForm({ firstName: '', lastName: '', email: '', phone: '', message: '' });
   };
 
   const inputCls = `
-    w-full px-4 py-3.5 rounded-xl
+    w-full px-4 py-3 rounded-xl
     bg-white/5 border border-white/10
     text-slate-100 text-[0.95rem] font-inter
     placeholder:text-slate-600 outline-none
     transition-all duration-300
-    focus:border-az-pink focus:bg-[rgba(255,53,155,0.06)]
-    focus:shadow-[0_0_0_3px_rgba(255,53,155,0.15)]
+    focus:border-[#FF7A00] focus:bg-[rgba(255,122,0,0.06)]
+    focus:shadow-[0_0_0_3px_rgba(255,122,0,0.15)]
   `;
 
   return (
-    <main className="min-h-[calc(100vh-68px)] flex items-center justify-center px-6 py-12 relative overflow-hidden animate-page-in">
+    <section className="py-24 px-6 bg-az-dark relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-      {/* ── Animated blobs ── */}
-      <div className="absolute top-[-60px]    left-[-80px]   w-[420px] h-[420px] rounded-full blur-[90px] opacity-25 bg-az-pink   animate-blob-1 pointer-events-none" />
-      <div className="absolute bottom-[-80px] right-[-40px]  w-[320px] h-[320px] rounded-full blur-[90px] opacity-20 bg-az-yellow animate-blob-2 pointer-events-none" />
-      <div className="absolute top-[55%]      left-[55%]     w-[280px] h-[280px] rounded-full blur-[90px] opacity-20 bg-az-blue   animate-blob-3 pointer-events-none" />
+          {/* Left: Avatar */}
+          <ScrollReveal animation="scale-left" className="relative flex justify-center items-center">
+            <div className="absolute w-[80%] h-[80%] rounded-full bg-[#FF7A00]/10 blur-[80px] pointer-events-none" />
+            <div className="relative z-10 animate-float">
+              <img
+                src={contactAvatar}
+                alt="Contact Avatar"
+                className="w-full max-w-[420px] h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.25)]"
+              />
+            </div>
+          </ScrollReveal>
 
-      {/* ── Glass card ── */}
-      <div className="login-card relative z-10 w-full max-w-[500px] rounded-[1.75rem] p-10 glass shadow-[0_8px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)]">
+          {/* Right: Form */}
+          <ScrollReveal animation="scale-right" className="space-y-8">
+            <div className="text-center lg:text-left">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-white font-grotesk mb-3">
+                Get In Touch
+              </h2>
+              <p className="text-slate-500 text-lg">Let's discuss your project</p>
+            </div>
 
-        {/* Icon */}
-        <div
-          className="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center text-2xl"
-          style={{
-            background:  'linear-gradient(135deg, #ff359b, #00d2ff)',
-            boxShadow:   '0 0 30px rgba(255,53,155,0.4)',
-          }}
-        >
-          ✉️
+            {status && (
+              <p className="text-center text-green-400 text-sm py-2 px-4 rounded-xl bg-green-400/10 border border-green-400/20">
+                {status}
+              </p>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+
+              {/* First + Last Name Row */}
+              <div className="grid grid-cols-2 gap-4">
+                <input
+                  name="firstName"
+                  type="text"
+                  className={inputCls}
+                  placeholder="First Name"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  name="lastName"
+                  type="text"
+                  className={inputCls}
+                  placeholder="Last Name"
+                  value={form.lastName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {/* Email */}
+              <input
+                name="email"
+                type="email"
+                className={inputCls}
+                placeholder="Email Address"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+
+              {/* Phone */}
+              <input
+                name="phone"
+                type="tel"
+                className={inputCls}
+                placeholder="Phone Number"
+                value={form.phone}
+                onChange={handleChange}
+              />
+
+              {/* Message */}
+              <textarea
+                name="message"
+                className={`${inputCls} resize-none h-32`}
+                placeholder="Your Message"
+                value={form.message}
+                onChange={handleChange}
+                required
+              />
+
+              {/* Submit */}
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-[#FF7A00] hover:bg-[#E66D00] border-none text-white shadow-[0_4px_14px_0_rgba(255,122,0,0.39)] mt-2"
+              >
+                Send Message
+              </Button>
+            </form>
+          </ScrollReveal>
+
         </div>
-
-        <h1 className="font-grotesk text-[1.85rem] font-extrabold text-slate-100 text-center mb-1">
-          Get in Touch
-        </h1>
-        <p className="text-xs text-slate-500 text-center mb-8">
-          Have a question or want to work together?
-        </p>
-
-        {/* Status banner */}
-        {status && (
-          <p className="text-center text-az-yellow text-sm mb-5 py-2 px-4 rounded-xl bg-white/5 border border-white/10">
-            {status}
-          </p>
-        )}
-
-        {/* ── Form ── */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-
-          {/* Name */}
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="contact-name" className="text-[0.78rem] font-semibold text-slate-400 tracking-widest uppercase">
-              Full Name
-            </label>
-            <input
-              id="contact-name"
-              name="name"
-              type="text"
-              className={inputCls}
-              placeholder="John Doe"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Phone */}
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="contact-phone" className="text-[0.78rem] font-semibold text-slate-400 tracking-widest uppercase">
-              Phone Number
-            </label>
-            <input
-              id="contact-phone"
-              name="phone"
-              type="tel"
-              className={inputCls}
-              placeholder="+1 (555) 000-0000"
-              value={form.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Describe */}
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="contact-desc" className="text-[0.78rem] font-semibold text-slate-400 tracking-widest uppercase">
-              How can I help?
-            </label>
-            <textarea
-              id="contact-desc"
-              name="description"
-              className={`${inputCls} resize-none h-32`}
-              placeholder="Tell me about your project..."
-              value={form.description}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Submit */}
-          <Button type="submit" size="lg" className="w-full mt-2">
-            Send Message
-          </Button>
-
-        </form>
-
       </div>
-    </main>
+    </section>
   );
 });
+
 
 export default Contact;

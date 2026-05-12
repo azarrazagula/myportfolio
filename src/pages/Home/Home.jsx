@@ -6,6 +6,14 @@ import Skills from '../Skills/Skills';
 import Projects from '../Projects/Projects';
 import Contact from '../Contact/Contact';
 import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
+import heroImage from '../../Assets/hero_3d_avatar_male.png';
+
+const SOCIAL_ICONS = [
+  { name: 'instagram', icon: 'https://cdn.simpleicons.org/instagram/E4405F', url: '#' },
+  { name: 'tiktok', icon: 'https://cdn.simpleicons.org/tiktok/000000', url: '#' },
+  { name: 'github', icon: 'https://cdn.simpleicons.org/github/181717', url: '#' },
+  { name: 'youtube', icon: 'https://cdn.simpleicons.org/youtube/FF0000', url: '#' },
+];
 
 const Home = () => {
   const { pathname } = useLocation();
@@ -13,81 +21,86 @@ const Home = () => {
 
   useEffect(() => {
     if (isInitialMount.current) {
-      // Force scroll to top on hard reload/first load
       window.scrollTo(0, 0);
       isInitialMount.current = false;
     } else {
-      // Handle scrolling when navigating between "pages"
-      let sectionId = '';
-      if (pathname && pathname !== '/') {
-        sectionId = pathname.replace('/', '');
-      } else {
-        sectionId = 'home';
-      }
-
+      let sectionId = pathname !== '/' ? pathname.replace('/', '') : 'home';
       const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
     }
   }, [pathname]);
 
   return (
     <div id="home" className="flex flex-col w-full">
-      <main className="min-h-[calc(100vh-68px)] flex flex-col overflow-hidden">
+      <main className="min-h-screen flex flex-col justify-center items-center overflow-hidden">
 
         {/* ── Hero ── */}
-        <ScrollReveal animation="bottom-to-top" className="flex-1 w-full flex flex-col">
-          <section className="flex-1 relative flex items-center justify-center px-6 py-24 overflow-hidden w-full">
-
-            {/* Decorative blobs */}
-            <div className="absolute top-[-120px] left-[-100px] w-[500px] h-[500px] rounded-full blur-[80px] opacity-20 bg-az-pink animate-float pointer-events-none" />
-            <div className="absolute bottom-[-100px] right-[-80px] w-[400px] h-[400px] rounded-full blur-[80px] opacity-20 bg-az-blue animate-float-r pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[80px] opacity-15 bg-az-yellow animate-float-slow pointer-events-none" />
-
-            {/* Content */}
-            <div className="relative z-10 max-w-3xl w-full text-center animate-page-in">
-
-              {/* Greeting badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-az-pink text-sm font-semibold tracking-[0.12em] uppercase mb-6">
-                <span>😊</span> Hello, World! I'm
+        <ScrollReveal animation="fade" className="w-full max-w-7xl mx-auto px-6 py-20 md:py-32">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="flex flex-col items-start space-y-8 animate-page-in">
+              
+              {/* Social Icons */}
+              <div className="flex space-x-4">
+                {SOCIAL_ICONS.map((social) => (
+                  <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" 
+                     className="w-10 h-10 rounded-xl glass flex items-center justify-center hover:scale-110 transition-transform">
+                    <img src={social.icon} alt={social.name} className="w-5 h-5" />
+                  </a>
+                ))}
               </div>
 
-              {/* Name */}
-              <h1 className="gradient-text font-grotesk font-extrabold leading-none mb-5"
-                style={{ fontSize: 'clamp(3.5rem, 9vw, 6.5rem)' }}>
-                AzarIbrahim
-              </h1>
+              {/* Title & Description */}
+              <div className="space-y-4">
+                <h1 className="text-slate-100 font-grotesk font-extrabold leading-tight"
+                    style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
+                  Hi, I'm <span className="gradient-text">AzarIbrahim</span>
+                </h1>
+                <p className="text-slate-400 text-lg md:text-xl max-w-lg leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut error quasi est labore? 
+                  Laborum hic commodi architecto ex eligendi quasi. Accusantium provident ipsa illum facilis.
+                </p>
+              </div>
 
-              {/* Role */}
-              <p className="text-slate-500 mb-8" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)' }}>
-                <span className="text-az-blue font-semibold">MERN Full-Stack Developer</span>{' '}
-                &amp; UI Enthusiast
-              </p>
-
-              {/* Article */}
-              <p className="text-slate-400 leading-[1.9] max-w-2xl mx-auto mb-10 text-left text-[1.05rem]">
-                I'm a passionate full-stack developer specialising in crafting{' '}
-                <strong className="text-slate-200">modern, high-performance web applications</strong>{' '}
-                from front-end pixel perfection to rock-solid back-end APIs. With deep expertise in{' '}
-                <strong className="text-slate-200">React, Node.js, Express, and MongoDB</strong>,
-                I turn complex problems into elegant, user-friendly solutions. I love writing clean,
-                maintainable code and continuously pushing my skills forward — whether experimenting
-                with new UI patterns or optimising backend performance. Every project is an opportunity
-                to create something not just functional,{' '}
-                <strong className="text-slate-200">but genuinely delightful to use.</strong>
-              </p>
-
-              {/* CTAs */}
-              <div className="flex gap-4 justify-center flex-wrap">
-                <Button size="lg" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
-                  About Me →
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Button 
+                  size="lg" 
+                  className="bg-[#FF7A00] hover:bg-[#E66D00] text-white border-none shadow-[0_4px_14px_0_rgba(255,122,0,0.39)]"
+                  onClick={() => window.open('#', '_blank')}
+                >
+                  <span className="flex items-center gap-2">
+                    📥 Download CV
+                  </span>
                 </Button>
-                <Button size="lg" variant="outline" onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
-                  My Skills
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-white/20 text-white hover:bg-white/5"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <span className="flex items-center gap-2">
+                    ✉️ Contact Me
+                  </span>
                 </Button>
               </div>
             </div>
+
+            {/* Right Side Image */}
+            <div className="relative flex justify-center lg:justify-end">
+              {/* Decorative Glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-az-pink/10 blur-[100px] rounded-full pointer-events-none" />
+              
+              <div className="relative animate-float">
+                <img 
+                  src={heroImage} 
+                  alt="3D Avatar" 
+                  className="w-full max-w-[500px] h-auto drop-shadow-2xl"
+                />
+              </div>
+            </div>
+
           </section>
         </ScrollReveal>
       </main>
@@ -97,21 +110,15 @@ const Home = () => {
       </section>
 
       <section id="skills" className="overflow-hidden">
-        <ScrollReveal animation="scale">
-          <Skills />
-        </ScrollReveal>
+        <Skills />
       </section>
 
       <section id="projects" className="overflow-hidden">
-        <ScrollReveal animation="scale">
-          <Projects />
-        </ScrollReveal>
+        <Projects />
       </section>
 
       <section id="contact" className="overflow-hidden">
-        <ScrollReveal animation="scale">
-          <Contact />
-        </ScrollReveal>
+        <Contact />
       </section>
     </div>
   );

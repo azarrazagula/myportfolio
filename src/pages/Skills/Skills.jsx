@@ -1,81 +1,69 @@
 import React, { memo } from 'react';
-import Card from '../../components/Card/Card';
+import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
 
 const SKILLS = [
-  {
-    icon: '🌐', title: 'HTML',
-    description: 'Semantic, accessible markup with modern HTML5 standards.',
-    level: 92, accentColor: '#e44d26',
-  },
-  {
-    icon: '🎨', title: 'CSS',
-    description: 'Responsive layouts, animations, and modern design systems.',
-    level: 88, accentColor: '#264de4',
-  },
-  {
-    icon: '⚡', title: 'JavaScript',
-    description: 'ES6+, async/await, DOM manipulation, and modern JS patterns.',
-    level: 85, accentColor: '#f7df1e',
-  },
-  {
-    icon: '💨', title: 'Tailwind CSS',
-    description: 'Utility-first CSS for rapid, consistent UI development.',
-    level: 82, accentColor: '#38bdf8',
-  },
-  {
-    icon: '🟢', title: 'Node.js',
-    description: 'Server-side JavaScript, REST APIs, and backend services.',
-    level: 80, accentColor: '#68a063',
-  },
-  {
-    icon: '🍃', title: 'MongoDB',
-    description: 'NoSQL databases, Mongoose ODM, and data modelling.',
-    level: 78, accentColor: '#4db33d',
-  },
-  {
-    icon: '⚛️', title: 'React',
-    description: 'Component-based UI, hooks, context API, and single-page applications.',
-    level: 90, accentColor: '#61dafb',
-  },
-  {
-    icon: '🚂', title: 'Express.js',
-    description: 'Fast, unopinionated backend framework for building RESTful APIs.',
-    level: 85, accentColor: '#ffffff',
-  },
+  { name: 'React', level: 90, icon: 'https://cdn.simpleicons.org/react/61DAFB', color: '#61DAFB' },
+  { name: 'Node.js', level: 85, icon: 'https://cdn.simpleicons.org/nodedotjs/339933', color: '#339933' },
+  { name: 'JavaScript', level: 92, icon: 'https://cdn.simpleicons.org/javascript/F7DF1E', color: '#F7DF1E' },
+  { name: 'Tailwind CSS', level: 88, icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', color: '#06B6D4' },
+  { name: 'MongoDB', level: 80, icon: 'https://cdn.simpleicons.org/mongodb/47A248', color: '#47A248' },
+  { name: 'Express', level: 82, icon: 'https://cdn.simpleicons.org/express/000000', color: '#FFFFFF' },
+  { name: 'HTML', level: 95, icon: 'https://cdn.simpleicons.org/html5/E34F26', color: '#E34F26' },
+  { name: 'CSS', level: 88, icon: 'https://img.icons8.com/color/48/css3.png', color: '#1572B6' },
+  { name: 'TypeScript', level: 78, icon: 'https://cdn.simpleicons.org/typescript/3178C6', color: '#3178C6' },
 ];
 
 const Skills = memo(() => (
-  <main className="min-h-[calc(100vh-68px)] py-20 px-6 animate-page-in">
-    <div className="max-w-5xl mx-auto">
-
+  <section id="skills" className="py-24 px-6 bg-az-dark">
+    <div className="max-w-6xl mx-auto">
+      
       {/* Header */}
-      <div className="text-center mb-14">
-        <p className="text-xs font-semibold text-az-pink tracking-[0.15em] uppercase mb-3">
-          Tech Stack
-        </p>
-        <h1 className="font-grotesk text-4xl md:text-5xl font-extrabold text-slate-100 leading-tight mb-4">
-          Skills &amp; Tools
-        </h1>
-        <p className="text-slate-500 max-w-lg mx-auto leading-relaxed">
-          A curated set of technologies I use daily to design, develop, and deploy
-          production-grade web applications.
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-white font-grotesk mb-4">
+          My Skills
+        </h2>
+        <p className="text-slate-500 max-w-xl mx-auto text-lg">
+          Technologies and tools I work with to create amazing web experiences.
         </p>
       </div>
 
-      {/* Skill cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {SKILLS.map((skill, i) => (
-          <div
-            key={skill.title}
-            className="animate-fade-up"
-            style={{ animationDelay: `${i * 0.1}s`, animationFillMode: 'both' }}
+          <ScrollReveal 
+            key={skill.name} 
+            animation="fade" 
+            className="glass p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-all hover:-translate-y-1 group"
           >
-            <Card {...skill} />
-          </div>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 p-2">
+                <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+              </div>
+              <span className="font-bold text-slate-200 text-lg">{skill.name}</span>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs font-bold text-slate-500 uppercase tracking-wider">
+                <span>Proficiency</span>
+                <span style={{ color: skill.color }}>{skill.level}%</span>
+              </div>
+              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                <div 
+                  className="h-full rounded-full transition-all duration-1000"
+                  style={{ 
+                    width: `${skill.level}%`, 
+                    backgroundColor: skill.color,
+                    boxShadow: `0 0 10px ${skill.color}80`
+                  }}
+                />
+              </div>
+            </div>
+          </ScrollReveal>
         ))}
       </div>
     </div>
-  </main>
+  </section>
 ));
 
 export default Skills;

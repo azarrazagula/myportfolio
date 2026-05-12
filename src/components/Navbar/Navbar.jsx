@@ -93,7 +93,7 @@ const Navbar = () => {
           {/* LEFT – brand */}
           <div className="flex justify-start">
             <button
-              onClick={() => handleNavClick('/', 'home')}
+              onClick={() => handleNavClick('/')}
               className="gradient-text-brand font-grotesk text-2xl md:text-2xl lg:text-4xl font-bold tracking-tight no-underline bg-transparent border-none cursor-pointer"
             >
               Portfolio
