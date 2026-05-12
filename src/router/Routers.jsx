@@ -9,7 +9,8 @@ const Routers = () => {
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
       <Route path="/about" element={<Home />} />
-      <Route path="/languages" element={<Home />} />
+      <Route path="/skills" element={<Home />} />
+      <Route path="/projects" element={<Home />} />
       <Route path="/contact" element={<Home />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

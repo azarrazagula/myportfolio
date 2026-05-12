@@ -20,6 +20,23 @@
     color: #e2e8f0;
     min-height: 100vh;
     overflow-x: hidden;
+    padding-top: 80px; /* mobile navbar height + offset */
+  }
+
+  @media (min-width: 768px) {
+    body {
+      padding-top: 112px; /* desktop navbar height + offset */
+    }
+  }
+
+  section {
+    scroll-margin-top: 90px;
+  }
+
+  @media (min-width: 768px) {
+    section {
+      scroll-margin-top: 120px;
+    }
   }
 
   /* Custom scrollbar */
@@ -76,9 +93,13 @@
   /* ── Navbar nav-link with animated underline ── */
   .nav-link {
     position: relative;
-    padding: 0.45rem 1rem;
-    font-size: 0.9rem;
-    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    @media (min-width: 1024px) {
+      padding: 0.5rem 1.25rem;
+      font-size: 1.15rem;
+    }
     color: #94a3b8;
     text-decoration: none;
     border-radius: 9999px;

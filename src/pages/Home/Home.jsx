@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import About from '../About/About';
-import Languages from '../Languages/Languages';
+import Skills from '../Skills/Skills';
+import Projects from '../Projects/Projects';
 import Contact from '../Contact/Contact';
 import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
 
@@ -82,7 +83,7 @@ const Home = () => {
                 <Button size="lg" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
                   About Me →
                 </Button>
-                <Button size="lg" variant="outline" onClick={() => document.getElementById('languages')?.scrollIntoView({ behavior: 'smooth' })}>
+                <Button size="lg" variant="outline" onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
                   My Skills
                 </Button>
               </div>
@@ -91,15 +92,20 @@ const Home = () => {
         </ScrollReveal>
       </main>
 
-      <section id="languages" className="overflow-hidden">
+      <section id="about" className="overflow-hidden">
+        <About />
+      </section>
+
+      <section id="skills" className="overflow-hidden">
         <ScrollReveal animation="scale">
-          <Languages />
+          <Skills />
         </ScrollReveal>
       </section>
 
-      {/* Alternative Pages Line by Line */}
-      <section id="about" className="overflow-hidden">
-        <About />
+      <section id="projects" className="overflow-hidden">
+        <ScrollReveal animation="scale">
+          <Projects />
+        </ScrollReveal>
       </section>
 
       <section id="contact" className="overflow-hidden">

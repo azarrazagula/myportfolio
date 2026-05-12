@@ -1,117 +1,111 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', id: 'home' },
-  { to: '/languages', label: 'Languages', id: 'languages' },
   { to: '/about', label: 'About', id: 'about' },
+  { to: '/skills', label: 'Skills', id: 'skills' },
+  { to: '/projects', label: 'Project', id: 'projects' },
+  { to: '/contact', label: 'Contact', id: 'contact' },
 ];
+
+const pathToId = (pathname) => {
+  if (pathname === '/') return 'home';
+  const match = NAV_LINKS.find(link => link.to === pathname);
+  return match ? match.id : 'home';
+};
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const navigate = useNavigate();
-  const ticking = useRef(false);
+  const location = useLocation();
 
-  // Handle background blur on scroll (Throttled with requestAnimationFrame)
+  // Sync active section when route changes (e.g. clicking a nav link)
+  useEffect(() => {
+    setActiveSection(pathToId(location.pathname));
+    // Reset scroll spy after navigation
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
+  // Scroll spy: update active as user scrolls through sections
   useEffect(() => {
     const onScroll = () => {
-      if (!ticking.current) {
-        window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 10);
-          ticking.current = false;
-        });
-        ticking.current = true;
-      }
+      const scrollY = window.scrollY + 130;
+      let currentId = pathToId(location.pathname);
+
+      NAV_LINKS.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (el && scrollY >= el.offsetTop) {
+          currentId = id;
+        }
+      });
+
+      setActiveSection(currentId);
     };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [location.pathname]);
+
+  // Handle background blur on scroll
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Scroll Spy: Update active link based on scroll position (Throttled)
+  // Close menu on desktop resize
   useEffect(() => {
-    const handleScrollSpy = () => {
-      if (!ticking.current) {
-        window.requestAnimationFrame(() => {
-          const sections = NAV_LINKS.map(link => document.getElementById(link.id));
-          const scrollPosition = window.scrollY + 100;
-
-          let currentActive = 'home';
-          sections.forEach((section, index) => {
-            if (!section) return;
-            const top = section.offsetTop;
-            const bottom = top + section.offsetHeight;
-
-            if (scrollPosition >= top && scrollPosition < bottom) {
-              currentActive = NAV_LINKS[index].id;
-            }
-          });
-          
-          const contactSection = document.getElementById('contact');
-          if (contactSection && scrollPosition >= contactSection.offsetTop) {
-            currentActive = 'contact';
-          }
-
-          setActiveSection(prev => prev !== currentActive ? currentActive : prev);
-          ticking.current = false;
-        });
-        ticking.current = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScrollSpy, { passive: true });
-    return () => window.removeEventListener('scroll', handleScrollSpy);
-  }, []);
-
-  useEffect(() => {
-    const onResize = () => { if (window.innerWidth > 768) setMenuOpen(false); };
+    const onResize = () => { if (window.innerWidth > 1024) setMenuOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const handleNavClick = (to, id) => {
+  const handleNavClick = (to) => {
     setMenuOpen(false);
-    setActiveSection(id);
     navigate(to);
   };
 
   const handleContact = () => {
     setMenuOpen(false);
-    setActiveSection('contact');
     navigate('/contact');
   };
+
 
   return (
     <>
       {/* ── Sticky navbar ── */}
       <nav
         className={`
-          sticky top-0 z-50 h-[68px] flex items-center px-6 md:px-8
-          bg-az-dark/80 backdrop-blur-[18px] border-b border-white/10
-          transition-shadow duration-300 font-inter
-          ${scrolled ? 'shadow-[0_4px_30px_rgba(0,0,0,0.5)]' : ''}
+          fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 
+          h-[58px] md:h-[80px] flex items-center px-4 md:px-8
+          w-[90%] md:w-[92%] lg:w-[60%] rounded-2xl md:rounded-[2rem]
+          bg-az-dark/70 backdrop-blur-[20px] md:backdrop-blur-[24px] border border-white/10
+          transition-all duration-300 font-inter
+          ${scrolled ? 'shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-az-dark/90' : ''}
         `}
       >
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full flex justify-center gap-6 md:gap-12 lg:gap-20 items-center">
 
           {/* LEFT – brand */}
-          <div className="flex justify-start md:flex-1">
+          <div className="flex justify-start">
             <button
               onClick={() => handleNavClick('/', 'home')}
-              className="gradient-text-brand font-grotesk text-2xl font-bold tracking-tight no-underline bg-transparent border-none cursor-pointer"
+              className="gradient-text-brand font-grotesk text-2xl md:text-2xl lg:text-4xl font-bold tracking-tight no-underline bg-transparent border-none cursor-pointer"
             >
-              PortFolio
+              Portfolio
             </button>
           </div>
 
-          {/* CENTER – nav links (hidden on mobile) */}
-          <ul className="hidden md:flex flex-[2] items-center justify-center gap-1 list-none m-0 p-0 shadow-none">
+          {/* CENTER – nav links (hidden on mobile & ipad) */}
+          <ul className="hidden lg:flex items-center justify-center gap-3 lg:gap-6 list-none m-0 p-0 shadow-none">
             {NAV_LINKS.map(({ to, label, id }) => (
               <li key={to}>
                 <button
-                  onClick={() => handleNavClick(to, id)}
+                  onClick={() => handleNavClick(to)}
                   className={`nav-link bg-transparent border-none cursor-pointer ${activeSection === id ? 'active' : ''}`}
                 >
                   {label}
@@ -121,20 +115,20 @@ const Navbar = () => {
           </ul>
 
           {/* RIGHT – avatar + hamburger */}
-          <div className="flex justify-end items-center gap-3 md:flex-1">
+          <div className="flex justify-end items-center gap-3">
 
             {/* Contact button – desktop */}
             <Button
               onClick={handleContact}
-              size="sm"
-              className={`hidden md:flex shadow-none ${activeSection === 'contact' ? 'ring-2 ring-az-pink' : ''}`}
+              size="md"
+              className={`hidden lg:flex shadow-none ${activeSection === 'contact' ? 'ring-2 ring-az-pink' : ''}`}
             >
               Get in Touch
             </Button>
 
-            {/* Hamburger – mobile */}
+            {/* Hamburger – mobile & ipad */}
             <button
-              className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 bg-transparent border-none cursor-pointer p-1"
+              className="lg:hidden flex flex-col justify-center gap-[5px] w-8 h-8 bg-transparent border-none cursor-pointer p-1"
               onClick={() => setMenuOpen(o => !o)}
               aria-label="Toggle menu"
             >
@@ -149,20 +143,21 @@ const Navbar = () => {
       {/* ── Mobile slide-down menu ── */}
       <div
         className={`
-          fixed top-[68px] left-0 right-0 z-40
-          bg-[rgba(10,10,15,0.97)] backdrop-blur-xl border-b border-white/10
+          fixed top-[74px] md:top-[110px] left-1/2 -translate-x-1/2 z-40
+          w-[92%] lg:w-[65%] rounded-2xl
+          bg-[rgba(10,10,15,0.95)] backdrop-blur-xl border border-white/10
           px-6 py-4 flex flex-col gap-1
           transition-all duration-300
           ${menuOpen
             ? 'translate-y-0 opacity-100 pointer-events-auto'
-            : '-translate-y-full opacity-0 pointer-events-none'
+            : '-translate-y-4 opacity-0 pointer-events-none'
           }
         `}
       >
         {NAV_LINKS.map(({ to, label, id }) => (
           <button
             key={to}
-            onClick={() => handleNavClick(to, id)}
+            onClick={() => handleNavClick(to)}
             className={`mobile-link text-left bg-transparent border-none cursor-pointer ${activeSection === id ? 'active text-az-pink' : ''}`}
           >
             {label}

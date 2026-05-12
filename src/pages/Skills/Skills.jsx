@@ -44,7 +44,7 @@ const SKILLS = [
   },
 ];
 
-const Languages = memo(() => (
+const Skills = memo(() => (
   <main className="min-h-[calc(100vh-68px)] py-20 px-6 animate-page-in">
     <div className="max-w-5xl mx-auto">
 
@@ -54,7 +54,7 @@ const Languages = memo(() => (
           Tech Stack
         </p>
         <h1 className="font-grotesk text-4xl md:text-5xl font-extrabold text-slate-100 leading-tight mb-4">
-          Languages &amp; Tools
+          Skills &amp; Tools
         </h1>
         <p className="text-slate-500 max-w-lg mx-auto leading-relaxed">
           A curated set of technologies I use daily to design, develop, and deploy
@@ -78,4 +78,4 @@ const Languages = memo(() => (
   </main>
 ));
 
-export default Languages;
+export default Skills;
