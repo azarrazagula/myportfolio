@@ -1,15 +1,10 @@
 import React from 'react';
 import Tag from "../Button/Button.jsx"
-import socialIcon from "../../Assets/social.svg";
-import twitterIcon from "../../Assets/twitter.svg";
-import linkedinIcon from "../../Assets/linkedin (1).svg";
-import githubIcon from "../../Assets/github (1).svg";
-
 const SOCIALS = [
-  { icon: <img src={twitterIcon} alt="Twitter/X" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Twitter/X', href: 'https://twitter.com' },
-  { icon: <img src={linkedinIcon} alt="LinkedIn" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'LinkedIn', href: 'https://linkedin.com' },
-  { icon: <img src={githubIcon} alt="GitHub" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'GitHub', href: 'https://github.com' },
-  { icon: <img src={socialIcon} alt="Instagram" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Instagram', href: 'https://instagram.com' },
+  { icon: <img src="https://cdn.simpleicons.org/twitter/1DA1F2" alt="Twitter/X" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Twitter/X', href: '#' },
+  { icon: <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'LinkedIn', href: '#' },
+  { icon: <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'GitHub', href: '#' },
+  { icon: <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Instagram', href: '#' },
 ];
 
 const Footer = (props) => (

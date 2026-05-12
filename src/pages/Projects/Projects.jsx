@@ -33,11 +33,8 @@ const Projects = memo(() => (
 
       {/* Header */}
       <div className="text-center mb-16">
-        <p className="text-xs font-semibold text-az-pink tracking-[0.15em] uppercase mb-3">
-          My Work
-        </p>
         <h1 className="font-grotesk text-4xl md:text-5xl font-extrabold text-slate-100 leading-tight mb-4">
-          Featured Projects
+          Projects
         </h1>
         <p className="text-slate-500 max-w-lg mx-auto leading-relaxed">
           A selection of recent projects that demonstrate my technical skills and design philosophy.

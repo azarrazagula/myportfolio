@@ -4,9 +4,9 @@ import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
 import aboutAvatar from '../../Assets/about_avatar.png';
 
 const STATS = [
-  { label: 'Education', value: '5+', sub: 'Degrees/Certs' },
-  { label: 'Years Experience', value: '10+', sub: 'In Industry' },
-  { label: 'Projects Completed', value: '100+', sub: 'World Wide' },
+  { label: 'Education', value: '12th', sub: 'Completed' },
+  { label: 'Year Experience', value: '1', sub: 'In Industry' },
+  { label: 'Projects Completed', value: '16', sub: 'World Wide' },
 ];
 
 const About = memo(() => {
@@ -15,7 +15,7 @@ const About = memo(() => {
     <section className="py-24 px-6 relative overflow-hidden bg-az-dark">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
+
           {/* Left Side: Avatar with Star Background */}
           <ScrollReveal animation="scale-left" className="relative flex justify-center items-center">
             {/* Star-like Background Shape (Decorative) */}
@@ -24,11 +24,11 @@ const About = memo(() => {
                 <path d="M100 0 L120 70 L195 70 L135 115 L155 185 L100 145 L45 185 L65 115 L5 70 L80 70 Z" />
               </svg>
             </div>
-            
+
             <div className="relative z-10">
-              <img 
-                src={aboutAvatar} 
-                alt="About Me Avatar" 
+              <img
+                src={aboutAvatar}
+                alt="About Me Avatar"
                 className="w-full max-w-[450px] h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.3)]"
               />
             </div>
@@ -41,8 +41,8 @@ const About = memo(() => {
                 About Me
               </h2>
               <p className="text-slate-400 text-lg leading-relaxed max-w-xl">
-                I'm a passionate MERN full-stack developer with a genuine obsession for crafting 
-                modern, high-performance web applications. I turn complex problems into elegant, 
+                I'm a passionate MERN full-stack developer with a genuine obsession for crafting
+                modern, high-performance web applications. I turn complex problems into elegant,
                 user-friendly solutions using the latest tech stacks.
               </p>
             </div>
