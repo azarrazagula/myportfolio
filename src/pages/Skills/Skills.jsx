@@ -34,7 +34,7 @@ const Skills = memo(() => (
         {SKILLS.map((skill, i) => (
           <ScrollReveal 
             key={skill.name} 
-            animation="fade" 
+            animation="scale" 
           >
             <Card {...skill} />
           </ScrollReveal>

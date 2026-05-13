@@ -7,12 +7,13 @@ const ScrollReveal = ({ children, animation = 'bottom-to-top', className = '' })
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
+        // Toggle visibility based on intersection status
+        setIsVisible(entry.isIntersecting);
       });
-    }, { threshold: 0.15 }); // Triggers when 15% of the component is visible
+    }, { 
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px' // Offset to ensure it triggers nicely
+    });
 
     const currentRef = domRef.current;
     if (currentRef) observer.observe(currentRef);

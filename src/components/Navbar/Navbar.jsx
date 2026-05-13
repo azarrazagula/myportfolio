@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { to: '/', label: 'Home', id: 'home' },
   { to: '/about', label: 'About', id: 'about' },
   { to: '/skills', label: 'Skills', id: 'skills' },
-  { to: '/projects', label: 'Project', id: 'projects' },
+  { to: '/projects', label: 'Projects', id: 'projects' },
   { to: '/contact', label: 'Contact', id: 'contact' },
 ];
 
@@ -26,20 +26,31 @@ const Navbar = () => {
   // Sync active section when route changes (e.g. clicking a nav link)
   useEffect(() => {
     setActiveSection(pathToId(location.pathname));
-    // Reset scroll spy after navigation
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
   // Scroll spy: update active as user scrolls through sections
   useEffect(() => {
     const onScroll = () => {
-      const scrollY = window.scrollY + 130;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // If at the very bottom of the page, force 'contact' to be active
+      if (scrollY + windowHeight >= documentHeight - 50) {
+        setActiveSection('contact');
+        return;
+      }
+
       let currentId = pathToId(location.pathname);
+      const checkpoint = scrollY + 150; // threshold from top
 
       NAV_LINKS.forEach(({ id }) => {
         const el = document.getElementById(id);
-        if (el && scrollY >= el.offsetTop) {
-          currentId = id;
+        if (el) {
+          const { offsetTop, offsetHeight } = el;
+          if (checkpoint >= offsetTop && checkpoint < offsetTop + offsetHeight) {
+            currentId = id;
+          }
         }
       });
 
@@ -47,6 +58,8 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    // Run once on mount to set initial state
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, [location.pathname]);
 

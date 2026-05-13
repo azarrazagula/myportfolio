@@ -1,8 +1,8 @@
 import React from 'react';
 import Tag from "../Button/Button.jsx"
 const SOCIALS = [
-  { icon: <img src="https://cdn.simpleicons.org/twitter/1DA1F2" alt="Twitter/X" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Twitter/X', href: '#' },
-  { icon: <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'LinkedIn', href: '#' },
+  { icon: <img src="https://cdn.simpleicons.org/x/1DA1F2" alt="Twitter/X" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Twitter/X', href: '#' },
+  { icon: <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'LinkedIn', href: '#' },
   { icon: <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'GitHub', href: '#' },
   { icon: <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" className="w-[1.2em] h-[1.2em] inline-block" />, label: 'Instagram', href: '#' },
 ];
