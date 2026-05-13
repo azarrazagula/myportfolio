@@ -16,9 +16,9 @@ const SKILLS = [
 ];
 
 const Skills = memo(() => (
-  <section id="skills" className="py-24 px-6 bg-az-dark">
+  <Card className="bg-[#0f172a] rounded-[3rem] mx-auto p-6 md:p-8 lg:p-10 border border-white/5 shadow-2xl w-[92%] max-w-[1400px]">
     <div className="max-w-6xl mx-auto">
-      
+
       {/* Header */}
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-extrabold text-white font-grotesk mb-4">
@@ -30,18 +30,47 @@ const Skills = memo(() => (
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {SKILLS.map((skill, i) => (
-          <ScrollReveal 
-            key={skill.name} 
-            animation="scale" 
+          <ScrollReveal
+            key={skill.name}
+            animation="scale"
           >
-            <Card {...skill} />
+            <Card className="bg-[#050914] p-6 rounded-2xl border border-white/5 hover:border-orange-500/30 group shadow-2xl hover:-translate-y-1">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 p-2.5 group-hover:bg-white/10 transition-colors">
+                  {typeof skill.icon === 'string' && (skill.icon.startsWith('http') || skill.icon.startsWith('/')) ? (
+                    <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+                  ) : (
+                    <span className="text-2xl">{skill.icon}</span>
+                  )}
+                </div>
+                <span className="font-bold text-slate-100 text-lg group-hover:text-white transition-colors">{skill.name}</span>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="space-y-3">
+                <div className="flex justify-between text-[10px] font-black text-slate-500 uppercase tracking-[0.1em]">
+                  <span>Proficiency</span>
+                  <span style={{ color: skill.color }}>{skill.level}%</span>
+                </div>
+                <div className="h-2 w-full bg-black/40 rounded-full overflow-hidden p-[2px]">
+                  <div
+                    className="h-full rounded-full transition-all duration-1000 shadow-[0_0_15px_rgba(255,122,0,0.2)]"
+                    style={{
+                      width: `${skill.level}%`,
+                      backgroundColor: skill.color,
+                      boxShadow: `0 0 12px ${skill.color}60`
+                    }}
+                  />
+                </div>
+              </div>
+            </Card>
           </ScrollReveal>
         ))}
       </div>
     </div>
-  </section>
+  </Card>
 ));
 
 export default Skills;

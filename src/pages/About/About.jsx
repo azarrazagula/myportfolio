@@ -1,20 +1,21 @@
 import React, { memo } from 'react';
 import Button from '../../components/Button/Button';
 import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
+import Card from '../../components/Card/Card';
 import aboutAvatar from '../../Assets/about_avatar.png';
 
 const STATS = [
-  { label: 'Education', value: '12th', sub: 'Completed' },
-  { label: 'Year Experience', value: '1', sub: 'In Industry' },
-  { label: 'Projects Completed', value: '16', sub: 'World Wide' },
+  { label: 'Education', value: '5+' },
+  { label: 'Year Experience', value: '1' },
+  { label: 'Projects Completed', value: '16+' },
 ];
 
 const About = memo(() => {
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden bg-az-dark">
+    <Card className="bg-[#0f172a] rounded-[3rem] mx-auto p-6 md:p-16 lg:p-20 border border-white/5 shadow-2xl w-[92%] max-w-[1400px]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-center text-center xl:text-left">
 
           {/* Left Side: Avatar with Star Background */}
           <ScrollReveal animation="scale-left" className="relative flex justify-center items-center">
@@ -29,15 +30,15 @@ const About = memo(() => {
               <img
                 src={aboutAvatar}
                 alt="About Me Avatar"
-                className="w-full max-w-[450px] h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.3)]"
+                className="w-full max-w-[450px] h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.3)] rounded-3xl"
               />
             </div>
           </ScrollReveal>
 
           {/* Right Side: Content */}
-          <ScrollReveal animation="scale-right" className="space-y-8">
+          <ScrollReveal animation="scale-right" className="space-y-8 flex flex-col items-center xl:items-start">
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white font-grotesk">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white font-grotesk">
                 About Me
               </h2>
               <p className="text-slate-400 text-lg leading-relaxed max-w-xl">
@@ -50,13 +51,13 @@ const About = memo(() => {
             {/* Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {STATS.map((stat) => (
-                <div key={stat.label} className="glass p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors group">
+                <Card key={stat.label} className="bg-white/5 p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors group">
                   <div className="text-3xl font-extrabold text-[#FF7A00] mb-1 group-hover:scale-110 transition-transform">
                     {stat.value}
                   </div>
                   <div className="text-sm font-bold text-slate-200 mb-1">{stat.label}</div>
                   <div className="text-xs text-slate-500 uppercase tracking-wider">{stat.sub}</div>
-                </div>
+                </Card>
               ))}
             </div>
 
@@ -69,7 +70,7 @@ const About = memo(() => {
 
         </div>
       </div>
-    </section>
+    </Card>
   );
 });
 

@@ -1,6 +1,7 @@
 import React, { useState, memo } from 'react';
 import Button from '../../components/Button/Button';
 import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
+import Card from '../../components/Card/Card';
 import contactAvatar from '../../Assets/contact_avatar.png';
 
 const Contact = memo(() => {
@@ -27,9 +28,9 @@ const Contact = memo(() => {
   `;
 
   return (
-    <section className="py-24 px-6 bg-az-dark relative overflow-hidden">
+    <Card className="bg-[#0f172a] rounded-[3rem] mx-auto p-6 md:p-16 lg:p-20 border border-white/5 shadow-2xl w-[92%] max-w-[1400px]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-center text-center xl:text-left">
 
           {/* Left: Avatar */}
           <ScrollReveal animation="scale-left" className="relative flex justify-center items-center">
@@ -38,14 +39,14 @@ const Contact = memo(() => {
               <img
                 src={contactAvatar}
                 alt="Contact Avatar"
-                className="w-full max-w-[420px] h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.25)]"
+                className="w-full max-w-[420px] h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.25)] rounded-3xl"
               />
             </div>
           </ScrollReveal>
 
           {/* Right: Form */}
           <ScrollReveal animation="scale-right" className="space-y-8">
-            <div className="text-center lg:text-left">
+            <div className="text-center xl:text-left">
               <h2 className="text-4xl md:text-5xl font-extrabold text-white font-grotesk mb-3">
                 Get In Touch
               </h2>
@@ -106,7 +107,7 @@ const Contact = memo(() => {
               {/* Message */}
               <textarea
                 name="message"
-                className={`${inputCls} resize-none h-32`}
+                className={`${inputCls} min-h-[120px] resize-none`}
                 placeholder="Your Message"
                 value={form.message}
                 onChange={handleChange}
@@ -126,7 +127,7 @@ const Contact = memo(() => {
 
         </div>
       </div>
-    </section>
+    </Card>
   );
 });
 

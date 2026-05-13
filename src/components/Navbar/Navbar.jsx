@@ -34,7 +34,7 @@ const Navbar = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      
+
       // If at the very bottom of the page, force 'contact' to be active
       if (scrollY + windowHeight >= documentHeight - 50) {
         setActiveSection('contact');
@@ -95,10 +95,10 @@ const Navbar = () => {
         className={`
           fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 
           h-[58px] md:h-[80px] flex items-center px-4 md:px-8
-          w-[90%] md:w-[92%] lg:w-[60%] rounded-2xl md:rounded-[2rem]
-          bg-az-dark/70 backdrop-blur-[20px] md:backdrop-blur-[24px] border border-white/10
+          w-[90%] md:w-[92%] lg:w-[80%] xl:w-[70%] rounded-2xl md:rounded-[2rem]
+          bg-[#0f172a]/90 backdrop-blur-[24px] border border-white/10
           transition-all duration-300 font-inter
-          ${scrolled ? 'shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-az-dark/90' : ''}
+          ${scrolled ? 'shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-[#050914]/95' : ''}
         `}
       >
         <div className="w-full flex justify-center gap-6 md:gap-12 lg:gap-20 items-center">

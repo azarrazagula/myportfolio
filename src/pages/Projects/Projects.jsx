@@ -3,6 +3,7 @@ import ecommerceImg from '../../Assets/Projects/ecommerce.png';
 import socialImg from '../../Assets/Projects/social.png';
 import portfolioImg from '../../Assets/Projects/portfolio.png';
 import ScrollReveal from '../../components/ScrollReveal/ScrollReveal';
+import Card from '../../components/Card/Card';
 
 const PROJECTS = [
   {
@@ -29,12 +30,12 @@ const PROJECTS = [
 ];
 
 const Projects = memo(() => (
-  <main className="min-h-[calc(100vh-68px)] py-20 px-6 animate-page-in">
+  <Card className="bg-[#0f172a] rounded-[3rem] mx-auto p-6 md:p-16 lg:p-20 border border-white/5 shadow-2xl w-[92%] max-w-[1400px]">
     <div className="max-w-6xl mx-auto">
 
       {/* Header */}
       <div className="text-center mb-16">
-        <h1 className="font-grotesk text-4xl md:text-5xl font-extrabold text-slate-100 leading-tight mb-4">
+        <h1 className="font-grotesk text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-100 leading-tight mb-4">
           Projects
         </h1>
         <p className="text-slate-500 max-w-lg mx-auto leading-relaxed">
@@ -43,13 +44,13 @@ const Projects = memo(() => (
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         {PROJECTS.map((project, i) => (
           <ScrollReveal
             key={project.title}
             animation="bottom-to-top"
           >
-            <div
+            <Card
               className="group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:border-az-pink/50 hover:-translate-y-2 h-full"
             >
               {/* Image Container */}
@@ -88,12 +89,12 @@ const Projects = memo(() => (
                   View Project <span>→</span>
                 </a>
               </div>
-            </div>
+            </Card>
           </ScrollReveal>
         ))}
       </div>
     </div>
-  </main>
+  </Card>
 ));
 
 export default Projects;
