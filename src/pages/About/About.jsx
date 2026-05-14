@@ -5,9 +5,9 @@ import Card from '../../components/Card/Card';
 import aboutAvatar from '../../Assets/about_avatar.png';
 
 const STATS = [
-  { label: 'Education', value: '5+' },
-  { label: 'Year Experience', value: '1' },
-  { label: 'Projects Completed', value: '16+' },
+  { label: 'Professional Experience', value: '1+' },
+  { label: 'Projects Completed', value: '15+' },
+  { label: 'Client Satisfaction', value: '100%' },
 ];
 
 const About = memo(() => {
