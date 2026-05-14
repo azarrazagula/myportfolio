@@ -78,22 +78,22 @@ const Home = () => {
       </section>
 
       {/* ── About Section ── */}
-      <section id="about" className="min-h-fit w-full flex flex-col justify-center items-center pt-16 md:pt-32 pb-12 md:pb-24 box-border scroll-mt-0">
+      <section id="about" className="min-h-fit w-full flex flex-col justify-center items-center pt-24 md:pt-32 pb-12 md:pb-24 box-border scroll-mt-0">
         <About />
       </section>
 
       {/* ── Skills Section ── */}
-      <section id="skills" className="min-h-fit w-full flex flex-col justify-center items-center pt-16 md:pt-32 pb-12 md:pb-24 box-border scroll-mt-0">
+      <section id="skills" className="min-h-fit w-full flex flex-col justify-center items-center pt-24 md:pt-32 pb-12 md:pb-24 box-border scroll-mt-0">
         <Skills />
       </section>
 
       {/* ── Projects Section ── */}
-      <section id="projects" className="min-h-fit w-full flex flex-col justify-center items-center pt-16 md:pt-32 pb-12 md:pb-24 box-border scroll-mt-0">
+      <section id="projects" className="min-h-fit w-full flex flex-col justify-center items-center pt-24 md:pt-32 pb-12 md:pb-24 box-border scroll-mt-0">
         <Projects />
       </section>
 
       {/* ── Contact Section ── */}
-      <section id="contact" className="min-h-fit w-full flex flex-col justify-center items-center pt-16 md:pt-32 pb-20 md:pb-32 box-border scroll-mt-0">
+      <section id="contact" className="min-h-fit w-full flex flex-col justify-center items-center pt-24 md:pt-32 pb-20 md:pb-32 box-border scroll-mt-0">
         <Contact />
       </section>
     </div>
