@@ -18,7 +18,6 @@ const Home = () => {
     const element = document.getElementById(sectionId);
 
     if (element) {
-      const isMobile = window.innerWidth < 768;
       const navbarOffset = 0; // Sections should start at the top
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navbarOffset;
