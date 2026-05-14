@@ -8,36 +8,45 @@ const SOCIALS = [
 ];
 
 const Footer = (props) => (
-  <footer className="bg-az-dark2 border-t border-white/10 py-7 px-8">
-    <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+  <footer className="bg-[#050914] border-t border-white/5 py-6 md:py-8 px-6">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
 
       {/* LEFT – name */}
-      <span className="gradient-text-brand font-grotesk font-bold text-base text-center sm:text-left">
-        AzarIbrahim
-      </span>
+      <div className="flex flex-col items-center md:items-start gap-2">
+        <span className="gradient-text-brand font-grotesk font-bold text-2xl">
+          AzarIbrahim
+        </span>
+        <p className="text-sm text-slate-500">
+          Full Stack MERN Developer
+        </p>
+      </div>
 
       {/* CENTER – year */}
-      <p className="text-xs text-slate-500 text-center">
-        © 2026 — All Rights Reserved
-      </p>
+      <div className="order-3 md:order-2">
+        <p className="text-sm text-slate-500">
+          © {new Date().getFullYear()} — All Rights Reserved
+        </p>
+      </div>
 
       {/* RIGHT – social icons */}
-      <div className="flex justify-center sm:justify-end gap-3">
-        {SOCIALS.map(({ icon, label, href }) => (
-          <a
-            key={label}
-            href={href}
-            aria-label={label}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={label}
-            className="social-btn"
-          >
-            {icon}
-          </a>
-        ))}
-        <Tag variant="primary" size="sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-          Get in Touch
+      <div className="flex flex-col items-center md:items-end gap-4 order-2 md:order-3">
+        <div className="flex gap-4">
+          {SOCIALS.map(({ icon, label, href }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={label}
+              className="social-btn"
+            >
+              {icon}
+            </a>
+          ))}
+        </div>
+        <Tag variant="primary" size="sm" className="bg-[#FF7A00] hover:bg-[#E66D00] border-none px-6 py-2" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+          Work Together
         </Tag>
       </div>
     </div>

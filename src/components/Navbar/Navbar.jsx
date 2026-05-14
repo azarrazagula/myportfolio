@@ -93,33 +93,33 @@ const Navbar = () => {
       {/* ── Sticky navbar ── */}
       <nav
         className={`
-          fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 
-          h-[58px] md:h-[80px] flex items-center px-4 md:px-8
-          w-[90%] md:w-[92%] lg:w-[80%] xl:w-[70%] rounded-2xl md:rounded-[2rem]
-          bg-[#0f172a]/90 backdrop-blur-[24px] border border-white/10
+          fixed top-4 left-1/2 -translate-x-1/2 z-50 
+          h-[60px] md:h-[70px] lg:h-[80px] flex items-center px-4 md:px-6 lg:px-8
+          w-[92%] lg:w-[85%] xl:w-[75%] max-w-[1200px] rounded-2xl md:rounded-[2rem]
+          bg-[#0f172a]/80 backdrop-blur-[20px] border border-white/10
           transition-all duration-300 font-inter
-          ${scrolled ? 'shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-[#050914]/95' : ''}
+          ${scrolled ? 'shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-[#050914]/90 border-white/20' : ''}
         `}
       >
-        <div className="w-full flex justify-center gap-6 md:gap-12 lg:gap-20 items-center">
+        <div className="w-full flex justify-between items-center">
 
           {/* LEFT – brand */}
-          <div className="flex justify-start">
+          <div className="flex-shrink-0">
             <button
               onClick={() => handleNavClick('/')}
-              className="gradient-text-brand font-grotesk text-2xl md:text-2xl lg:text-4xl font-bold tracking-tight no-underline bg-transparent border-none cursor-pointer"
+              className="gradient-text-brand font-grotesk text-xl md:text-2xl lg:text-3xl font-bold tracking-tight no-underline bg-transparent border-none cursor-pointer"
             >
-              Portfolio
+              PortFolio
             </button>
           </div>
 
           {/* CENTER – nav links (hidden on mobile & ipad) */}
-          <ul className="hidden lg:flex items-center justify-center gap-3 lg:gap-6 list-none m-0 p-0 shadow-none">
+          <ul className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 list-none m-0 p-0">
             {NAV_LINKS.map(({ to, label, id }) => (
               <li key={to}>
                 <button
                   onClick={() => handleNavClick(to)}
-                  className={`nav-link bg-transparent border-none cursor-pointer ${activeSection === id ? 'active' : ''}`}
+                  className={`nav-link bg-transparent border-none cursor-pointer text-sm xl:text-base ${activeSection === id ? 'active' : ''}`}
                 >
                   {label}
                 </button>
@@ -127,21 +127,19 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* RIGHT – avatar + hamburger */}
-          <div className="flex justify-end items-center gap-3">
-
-            {/* Contact button – desktop */}
+          {/* RIGHT – contact + hamburger */}
+          <div className="flex items-center gap-3">
             <Button
               onClick={handleContact}
               size="md"
-              className={`hidden lg:flex shadow-none ${activeSection === 'contact' ? 'ring-2 ring-az-pink' : ''}`}
+              className={`hidden md:flex shadow-none px-6 py-2.5 text-sm font-bold ${activeSection === 'contact' ? 'ring-2 ring-az-pink' : ''}`}
             >
-              Get in Touch
+              Hire Me
             </Button>
 
-            {/* Hamburger – mobile & ipad */}
+            {/* Hamburger – mobile & tablet < lg */}
             <button
-              className="lg:hidden flex flex-col justify-center gap-[5px] w-8 h-8 bg-transparent border-none cursor-pointer p-1"
+              className="lg:hidden flex flex-col justify-center gap-[5px] w-10 h-10 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 cursor-pointer p-2.5 transition-colors"
               onClick={() => setMenuOpen(o => !o)}
               aria-label="Toggle menu"
             >
@@ -156,30 +154,32 @@ const Navbar = () => {
       {/* ── Mobile slide-down menu ── */}
       <div
         className={`
-          fixed top-[74px] md:top-[110px] left-1/2 -translate-x-1/2 z-40
-          w-[92%] lg:w-[65%] rounded-2xl
-          bg-[rgba(10,10,15,0.95)] backdrop-blur-xl border border-white/10
-          px-6 py-4 flex flex-col gap-1
-          transition-all duration-300
+          fixed top-[84px] md:top-[94px] left-1/2 -translate-x-1/2 z-40
+          w-[92%] lg:w-[85%] max-w-[1200px] rounded-2xl
+          bg-[#0f172a]/95 backdrop-blur-2xl border border-white/10
+          px-4 py-6 flex flex-col gap-2
+          transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1)
           ${menuOpen
             ? 'translate-y-0 opacity-100 pointer-events-auto'
-            : '-translate-y-4 opacity-0 pointer-events-none'
+            : '-translate-y-8 opacity-0 pointer-events-none'
           }
         `}
       >
-        {NAV_LINKS.map(({ to, label, id }) => (
-          <button
-            key={to}
-            onClick={() => handleNavClick(to)}
-            className={`mobile-link text-left bg-transparent border-none cursor-pointer ${activeSection === id ? 'active text-az-pink' : ''}`}
-          >
-            {label}
-          </button>
-        ))}
+        <div className="grid grid-cols-2 gap-2">
+          {NAV_LINKS.map(({ to, label, id }) => (
+            <button
+              key={to}
+              onClick={() => handleNavClick(to)}
+              className={`mobile-link text-center py-4 bg-white/5 rounded-xl border border-white/5 transition-all ${activeSection === id ? 'active text-[#FF7A00] bg-[#FF7A00]/10 border-[#FF7A00]/20' : ''}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
         <div className="mt-2 pt-4 border-t border-white/10">
           <Button
             onClick={handleContact}
-            className={`w-full text-lg py-3.5 ${activeSection === 'contact' ? 'ring-2 ring-az-pink' : ''}`}
+            className={`w-full text-lg py-4 shadow-xl ${activeSection === 'contact' ? 'ring-2 ring-[#FF7A00]' : ''}`}
           >
             ✉️ Get in Touch
           </Button>

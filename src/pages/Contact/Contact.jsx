@@ -28,29 +28,29 @@ const Contact = memo(() => {
   `;
 
   return (
-    <Card className="bg-[#0f172a] rounded-[3rem] mx-auto p-6 md:p-16 lg:p-20 border border-white/5 shadow-2xl w-[92%] max-w-[1400px]">
+    <Card className="bg-[#0f172a] rounded-[2rem] md:rounded-[3rem] mx-auto p-6 md:p-12 lg:p-16 border border-white/5 shadow-2xl w-full max-w-[1400px]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-center text-center xl:text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center text-center lg:text-left">
 
           {/* Left: Avatar */}
           <ScrollReveal animation="scale-left" className="relative flex justify-center items-center">
-            <div className="absolute w-[80%] h-[80%] rounded-full bg-[#FF7A00]/10 blur-[80px] pointer-events-none" />
-            <div className="relative z-10 animate-float">
+            <div className="absolute w-[80%] h-[80%] rounded-full bg-[#FF7A00]/10 blur-[60px] md:blur-[80px] pointer-events-none" />
+            <div className="relative z-10 animate-float max-w-[300px] md:max-w-[400px]">
               <img
                 src={contactAvatar}
                 alt="Contact Avatar"
-                className="w-full max-w-[420px] h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.25)] rounded-3xl"
+                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(255,122,0,0.25)] rounded-3xl"
               />
             </div>
           </ScrollReveal>
 
           {/* Right: Form */}
-          <ScrollReveal animation="scale-right" className="space-y-8">
-            <div className="text-center xl:text-left">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white font-grotesk mb-3">
+          <ScrollReveal animation="scale-right" className="space-y-6 md:space-y-8 w-full">
+            <div className="text-center lg:text-left">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-white font-grotesk mb-3">
                 Get In Touch
               </h2>
-              <p className="text-slate-500 text-lg">Let's discuss your project</p>
+              <p className="text-slate-500 text-base md:text-lg">Let's discuss your project</p>
             </div>
 
             {status && (
@@ -62,7 +62,7 @@ const Contact = memo(() => {
             <form onSubmit={handleSubmit} className="space-y-4">
 
               {/* First + Last Name Row */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   name="firstName"
                   type="text"
@@ -118,7 +118,7 @@ const Contact = memo(() => {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-[#FF7A00] hover:bg-[#E66D00] border-none text-white shadow-[0_4px_14px_0_rgba(255,122,0,0.39)] mt-2"
+                className="w-full bg-[#FF7A00] hover:bg-[#E66D00] border-none text-white shadow-[0_4px_14px_0_rgba(255,122,0,0.39)] mt-2 py-4 text-lg"
               >
                 Send Message
               </Button>

@@ -16,45 +16,45 @@ const SKILLS = [
 ];
 
 const Skills = memo(() => (
-  <Card className="bg-[#0f172a] rounded-[3rem] mx-auto p-6 md:p-8 lg:p-10 border border-white/5 shadow-2xl w-[92%] max-w-[1400px]">
+  <Card className="bg-[#0f172a] rounded-[2rem] md:rounded-[3rem] mx-auto p-6 md:p-12 lg:p-16 border border-white/5 shadow-2xl w-full max-w-[1400px]">
     <div className="max-w-6xl mx-auto">
 
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-10 md:mb-16">
         <h2 className="text-3xl md:text-5xl font-extrabold text-white font-grotesk mb-4">
           My Skills
         </h2>
-        <p className="text-slate-500 max-w-xl mx-auto text-lg">
+        <p className="text-slate-500 max-w-xl mx-auto text-base md:text-lg">
           Technologies and tools I work with to create amazing web experiences.
         </p>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
         {SKILLS.map((skill, i) => (
           <ScrollReveal
             key={skill.name}
             animation="scale"
           >
-            <Card className="bg-[#050914] p-6 rounded-2xl border border-white/5 hover:border-orange-500/30 group shadow-2xl hover:-translate-y-1">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 p-2.5 group-hover:bg-white/10 transition-colors">
+            <Card className="bg-[#050914] p-4 md:p-6 rounded-2xl border border-white/5 hover:border-orange-500/30 group shadow-2xl hover:-translate-y-1 transition-all">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4 mb-4 md:mb-6 text-center sm:text-left">
+                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl bg-white/5 p-2 md:p-2.5 group-hover:bg-white/10 transition-colors">
                   {typeof skill.icon === 'string' && (skill.icon.startsWith('http') || skill.icon.startsWith('/')) ? (
                     <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
                   ) : (
-                    <span className="text-2xl">{skill.icon}</span>
+                    <span className="text-xl md:text-2xl">{skill.icon}</span>
                   )}
                 </div>
-                <span className="font-bold text-slate-100 text-lg group-hover:text-white transition-colors">{skill.name}</span>
+                <span className="font-bold text-slate-100 text-sm md:text-lg group-hover:text-white transition-colors">{skill.name}</span>
               </div>
 
               {/* Progress Bar */}
-              <div className="space-y-3">
-                <div className="flex justify-between text-[10px] font-black text-slate-500 uppercase tracking-[0.1em]">
+              <div className="space-y-2 md:space-y-3">
+                <div className="flex justify-between text-[8px] md:text-[10px] font-black text-slate-500 uppercase tracking-[0.1em]">
                   <span>Proficiency</span>
                   <span style={{ color: skill.color }}>{skill.level}%</span>
                 </div>
-                <div className="h-2 w-full bg-black/40 rounded-full overflow-hidden p-[2px]">
+                <div className="h-1.5 md:h-2 w-full bg-black/40 rounded-full overflow-hidden p-[1px] md:p-[2px]">
                   <div
                     className="h-full rounded-full transition-all duration-1000 shadow-[0_0_15px_rgba(255,122,0,0.2)]"
                     style={{
