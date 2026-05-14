@@ -59,7 +59,13 @@ const Home = () => {
                 </p>
               </div>
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                <Button size="lg" className="bg-[#FF7A00] hover:bg-[#E66D00] text-white border-none shadow-[0_4px_14px_0_rgba(255,122,0,0.39)] px-8 py-6 text-lg">
+                <Button
+                  as="a"
+                  href="/Resume.pdf"
+                  download="Mohammed_Azaruddin_Resume.pdf"
+                  size="lg"
+                  className="bg-[#FF7A00] hover:bg-[#E66D00] text-white border-none shadow-[0_4px_14px_0_rgba(255,122,0,0.39)] px-8 py-6 text-lg"
+                >
                   <span>📥 Download CV</span>
                 </Button>
                 <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/5 px-8 py-6 text-lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
